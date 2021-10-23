@@ -74,3 +74,8 @@ To **run and develop** do the following:
 - Press <kbd>F5</kbd> to debug
 
 To **test** do the following: `npm run test` or <kbd>F5</kbd> in VS Code with the "Launch Tests" debug configuration.
+
+To **package** an extension file for installation do the following:
+
+- Run `npm install –g vsce` to install a tool for composing an extension file
+- Run `vsce package` to package an extension file using the tool 

@@ -44,7 +44,6 @@ import IInstallDependencies from './packageManager/IInstallDependencies';
 import { installRuntimeDependencies } from './InstallRuntimeDependencies';
 import { isValidDownload } from './packageManager/isValidDownload';
 import { BackgroundWorkStatusBarObserver } from './observers/BackgroundWorkStatusBarObserver';
-import { getDecompilationAuthorization } from './omnisharp/decompilationPrompt';
 
 export async function activate(context: vscode.ExtensionContext): Promise<CSharpExtensionExports> {
 
@@ -155,9 +154,6 @@ export async function activate(context: vscode.ExtensionContext): Promise<CSharp
     let installDependencies: IInstallDependencies = async (dependencies: AbsolutePathPackage[]) => downloadAndInstallPackages(dependencies, networkSettingsProvider, eventStream, isValidDownload);
     let runtimeDependenciesExist = await ensureRuntimeDependencies(extension, eventStream, platformInfo, installDependencies);
 
-    // Prompt to authorize decompilation in this workspace
-    await getDecompilationAuthorization(context, optionProvider);
-
     // activate language services
     let langServicePromise = OmniSharp.activate(context, extension.packageJSON, platformInfo, networkSettingsProvider, eventStream, optionProvider, extension.extensionPath);
 
@@ -217,7 +213,11 @@ function isSupportedPlatform(platform: PlatformInformation): boolean {
     if (platform.isLinux()) {
         return platform.architecture === "x86_64" ||
             platform.architecture === "x86" ||
-            platform.architecture === "i686";
+            platform.architecture === "i686" ||
+            platform.architecture === "aarch64" ||
+            platform.architecture === "arm64" ||
+            platform.architecture === "arm" ||
+            platform.architecture === "armv7l";
     }
 
     return false;

@@ -65,7 +65,10 @@ async function checkIsValidArchitecture(platformInformation: PlatformInformation
             return true;
         }
         else if (platformInformation.isLinux()) {
-            return true;
+            if (platformInformation.architecture === 'armv7l' || platformInformation.architecture === 'aarch64' ||
+                platformInformation.architecture === 'arm64' || platformInformation.architecture === 'arm') {
+                    return false;
+                }
         }
     }
 

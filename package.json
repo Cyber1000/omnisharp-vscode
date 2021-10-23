@@ -244,8 +244,6 @@
       ],
       "binaries": [
         "./netcoredbg"
-        "armv7l"
-        "aarch64"
       ],
       "installTestPath": ".debugger/netcoredbg/netcoredbg"
     },
@@ -260,6 +258,23 @@
       ],
       "architectures": [
         "x86_64"
+      ],
+      "binaries": [
+        "./netcoredbg"
+      ],
+      "installTestPath": ".debugger/netcoredbg/netcoredbg"
+    },
+    {
+      "id": "Debugger",
+      "description": ".NET Core Debugger (linux / arm64)",
+      "url": "https://github.com/Cyber1000/netcoredbg/releases/download/1.2.0-825.arm64.alpha/netcoredbg-linux-arm64.tar.gz",
+      "installPath": ".debugger",
+      "platforms": [
+        "linux"
+      ],
+      "architectures": [
+        "arm64",
+        "aarch64"
       ],
       "binaries": [
         "./netcoredbg"
